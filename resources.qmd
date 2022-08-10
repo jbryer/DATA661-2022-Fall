@@ -1,0 +1,31 @@
+---
+title: "Resources"
+editor_options: 
+  chunk_output_type: console
+editor: source
+website:
+  page-navigation: false
+---
+
+
+### References Materials
+
+This is a list of books that will be helpful to reference throughout the semester to build the R package.
+
+[Happy Git and Github for the useR](Happy Git and GitHub for the useR) by Jenny Bryan
+
+[R for Data Science](https://r4ds.had.co.nz) by Hadley Wickham and Garrett Grolemund
+
+[Advanced R](https://adv-r.hadley.nz) by Hadley Wickham
+
+[R Packages](https://r-pkgs.org) by Hadley Wickham
+
+[Mastering Shiny](https://mastering-shiny.org) by Hadley Wickham
+
+
+### References
+
+We'll add to this list references about the machine learning algorithms and datasets used in the package.
+
+Fernández-Delgado, M., Cernadas, E., Barro, S., & Amorim, D. (2014). [Do we Need Hundreds of Classifiers to Solve Real World Classification Problems?](https://jmlr.org/papers/v15/delgado14a.html), *Journal of Machine Learning Research 15*.
+

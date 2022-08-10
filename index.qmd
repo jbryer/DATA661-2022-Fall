@@ -1,0 +1,73 @@
+---
+title: "DATA661 2022 Fall - Benchmarking Predictive Models"
+editor: source
+---
+
+Advisors: [Angela M. Lui](mailto:angela.lui@cuny.edu), Ph.D. and [Jason Bryer](mailto:jason.bryer@cuny.edu), Ph.D.  
+Class Meetup: TBD  
+Slack: TBD  
+Office Hours: By Appointment  
+
+
+### Course Description
+
+Training and evaluating predictive models is one of the key skills to be a data scientist. However, there are hundreds of predictive modeling procedures implemented in varying languages (e.g. R, Python, Java). Fernández-Delgado, Cernadas, Barro, and Amorim (2014) evaluated 179 classifiers across 17 modeling families using 121 datasets to compare the performance of these classifiers across multiple datasets. Their results suggest that, in general, random forest procedures produce the highest accuracy. Since their publication in 2014, many new predictive modeling procedures have been developed. Moreover, Fernández-Delgado et al only examined classification procedures and did not explore regression, multilevel regression, or time series models. This independent study will contribute to a framework that is designed to conduct reproducible comparisons of predictive models across many datasets.
+
+The `mldash` R package (see https://github.com/jbryer/mldash) is a framework under development to:
+
+1. Define a standard format for retrieving datasets and defining key attributes for modeling with that dataset (e.g. classification or regression; independent and dependent variables, etc.). Datasets are defined using plain text configuration files.
+2. Define a standard format to define how predictive models are trained and how to predict outcomes on new datasets.
+3. Handle defining of training and validation datasets and performance metrics (currently uses the yardstick R package).
+4. Provide an R Shiny dashboard application to explore the performance of the predictive models across many metrics, including training performance time.
+
+We chose to use R as the language to build the framework given its history and features to easily interface with other programming languages. At minimum, we will leverage predictive models implemented in Python (using the `reticulate` R package) and Java (using the RJava and RWeka R packages). 
+
+Students will be active contributors to the open source project. The expectations and deliverables for this course include:
+
+* Contribute at least 10 datasets
+* Contribute additional predictive models (the number will depend on what family you work on, will be discussed in the first few weeks).
+* Present to the group on one family of predictive models (presentations start around week 8, presentations approximately 30 minutes, include theory and implementation details, we will co-create the rubric as a class).
+* Contribute an annotated bibliography of seminal papers related to your selected predictive model family.
+* Contribute to a presentation that will be given to the MSDS program at the end of the semester.
+* Attend and participate in class meetups and on Slack and complete the weekly feedback forms.
+
+Students will be public contributors to the project and receive acknowledgement in any publications. Students have the option to contribute to conference proposals and/or paper proposals to be listed as co-authors (though this is not required for successful completion of the course).
+
+
+### Course Learning Outcomes
+
+This course provides students with hands-on experience regarding a data science problem. Students will develop the skills to plan and then execute a data science project. They will also develop collaboration and presentation skills using the technologies used by data scientists.
+ 
+### Program Learning Outcomes addressed by the course:
+
+1. Implement machine learning techniques to measure and/or solve the phenomenon.
+2. Articulate findings clearly, concisely, and succinctly.
+3. Learn how to contribute to an open source project on Github.
+4. Evaluate the performance of predictive models.
+5. Understand the different predictive model families and how they can be applied to different datasets.
+ 
+
+### How this Course is Unique from Other Courses
+
+In most MSDS courses, you would learn and gain the statistical and machine learning content knowledge and skills needed to wrangle the required datasets and exercises given to you by your instructors. For this independent study course, you are given the opportunity to apply these knowledge and skills by working on aspects of an open source project. While each student will be working on their own area of the project, weekly Meetups and our Slack will serve as a platform for us to learn and problem-solve collaboratively. 
+
+* This is a Pass/Fail course. In most courses, you are given grades for completing assignments, and these grades would represent your mastery of the content. In this course, formative feedback will be provided throughout the course, by the instructor and your peers, as you contribute to the project. 
+
+* You are expected to attend every Meetup and be active on Slack. Slack and Weekly Meetups are the two places where you will share the progress you have made on your project, ask questions that you have to problem-solve together. In order for everyone to contribute meaningfully to these conversations, it is important that you attend, listen, and understand the project and project activities of each of your colleagues. These are the platforms where you will experience collaborative learning.
+
+### Accessibility and Accommodations
+
+The CUNY School of Professional Studies is firmly committed to making higher education accessible to students with disabilities by removing architectural barriers and providing programs and support services necessary for them to benefit from the instruction and resources of the University. Early planning is essential for many of the resources and accommodations provided. Please see: http://sps.cuny.edu/student_services/disabilityservices.html
+ 
+### Online Etiquette and Anti-Harassment Policy
+
+The University strictly prohibits the use of University online resources or facilities, including Blackboard, for the purpose of harassment of any individual or for the posting of any material that is scandalous, libelous, offensive or otherwise against the University’s policies. Please see: http://media.sps.cuny.edu/filestore/8/4/9_d018dae29d76f89/849_3c7d075b32c268e.pdf
+ 
+### Academic Integrity
+
+Academic dishonesty is unacceptable and will not be tolerated. Cheating, forgery, plagiarism and collusion in dishonest acts undermine the educational mission of the City University of New York and the students' personal and intellectual growth. Please see: http://media.sps.cuny.edu/filestore/8/3/9_dea303d5822ab91/839_1753cee9c9d90e9.pdf
+ 
+### Student Support Services
+
+If you need any additional help, please visit Student Support Services: http://sps.cuny.edu/student_resources
+
