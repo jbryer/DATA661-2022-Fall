@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>DATA661 2022 Fall - DATA661 2022 Fall - Benchmarking Predictive Models</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">DATA661 2022 Fall</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./schedule.html">Schedule</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resources.html">Resources</a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/jbryer"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bi-github" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-bi-github">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/jbryer/DATA661Fall2022">
+ <span class="dropdown-text">Course Repo</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/jbryer/mldash">
+ <span class="dropdown-text">mldash Repo</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#course-description" id="toc-course-description" class="nav-link active" data-scroll-target="#course-description">Course Description</a></li>
+  <li><a href="#course-learning-outcomes" id="toc-course-learning-outcomes" class="nav-link" data-scroll-target="#course-learning-outcomes">Course Learning Outcomes</a></li>
+  <li><a href="#program-learning-outcomes-addressed-by-the-course" id="toc-program-learning-outcomes-addressed-by-the-course" class="nav-link" data-scroll-target="#program-learning-outcomes-addressed-by-the-course">Program Learning Outcomes addressed by the course:</a></li>
+  <li><a href="#how-this-course-is-unique-from-other-courses" id="toc-how-this-course-is-unique-from-other-courses" class="nav-link" data-scroll-target="#how-this-course-is-unique-from-other-courses">How this Course is Unique from Other Courses</a></li>
+  <li><a href="#accessibility-and-accommodations" id="toc-accessibility-and-accommodations" class="nav-link" data-scroll-target="#accessibility-and-accommodations">Accessibility and Accommodations</a></li>
+  <li><a href="#online-etiquette-and-anti-harassment-policy" id="toc-online-etiquette-and-anti-harassment-policy" class="nav-link" data-scroll-target="#online-etiquette-and-anti-harassment-policy">Online Etiquette and Anti-Harassment Policy</a></li>
+  <li><a href="#academic-integrity" id="toc-academic-integrity" class="nav-link" data-scroll-target="#academic-integrity">Academic Integrity</a></li>
+  <li><a href="#student-support-services" id="toc-student-support-services" class="nav-link" data-scroll-target="#student-support-services">Student Support Services</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">DATA661 2022 Fall - Benchmarking Predictive Models</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>Advisors: <a href="mailto:angela.lui@cuny.edu">Angela M. Lui</a>, Ph.D.&nbsp;and <a href="mailto:jason.bryer@cuny.edu">Jason Bryer</a>, Ph.D.<br>
+Class Meetup: TBD<br>
+Slack: TBD<br>
+Office Hours: By Appointment</p>
+<section id="course-description" class="level3">
+<h3 class="anchored" data-anchor-id="course-description">Course Description</h3>
+<p>Training and evaluating predictive models is one of the key skills to be a data scientist. However, there are hundreds of predictive modeling procedures implemented in varying languages (e.g.&nbsp;R, Python, Java). Fernández-Delgado, Cernadas, Barro, and Amorim (2014) evaluated 179 classifiers across 17 modeling families using 121 datasets to compare the performance of these classifiers across multiple datasets. Their results suggest that, in general, random forest procedures produce the highest accuracy. Since their publication in 2014, many new predictive modeling procedures have been developed. Moreover, Fernández-Delgado et al only examined classification procedures and did not explore regression, multilevel regression, or time series models. This independent study will contribute to a framework that is designed to conduct reproducible comparisons of predictive models across many datasets.</p>
+<p>The <code>mldash</code> R package (see https://github.com/jbryer/mldash) is a framework under development to:</p>
+<ol type="1">
+<li>Define a standard format for retrieving datasets and defining key attributes for modeling with that dataset (e.g.&nbsp;classification or regression; independent and dependent variables, etc.). Datasets are defined using plain text configuration files.</li>
+<li>Define a standard format to define how predictive models are trained and how to predict outcomes on new datasets.</li>
+<li>Handle defining of training and validation datasets and performance metrics (currently uses the yardstick R package).</li>
+<li>Provide an R Shiny dashboard application to explore the performance of the predictive models across many metrics, including training performance time.</li>
+</ol>
+<p>We chose to use R as the language to build the framework given its history and features to easily interface with other programming languages. At minimum, we will leverage predictive models implemented in Python (using the <code>reticulate</code> R package) and Java (using the RJava and RWeka R packages).</p>
+<p>Students will be active contributors to the open source project. The expectations and deliverables for this course include:</p>
+<ul>
+<li>Contribute at least 10 datasets</li>
+<li>Contribute additional predictive models (the number will depend on what family you work on, will be discussed in the first few weeks).</li>
+<li>Present to the group on one family of predictive models (presentations start around week 8, presentations approximately 30 minutes, include theory and implementation details, we will co-create the rubric as a class).</li>
+<li>Contribute an annotated bibliography of seminal papers related to your selected predictive model family.</li>
+<li>Contribute to a presentation that will be given to the MSDS program at the end of the semester.</li>
+<li>Attend and participate in class meetups and on Slack and complete the weekly feedback forms.</li>
+</ul>
+<p>Students will be public contributors to the project and receive acknowledgement in any publications. Students have the option to contribute to conference proposals and/or paper proposals to be listed as co-authors (though this is not required for successful completion of the course).</p>
+</section>
+<section id="course-learning-outcomes" class="level3">
+<h3 class="anchored" data-anchor-id="course-learning-outcomes">Course Learning Outcomes</h3>
+<p>This course provides students with hands-on experience regarding a data science problem. Students will develop the skills to plan and then execute a data science project. They will also develop collaboration and presentation skills using the technologies used by data scientists.</p>
+</section>
+<section id="program-learning-outcomes-addressed-by-the-course" class="level3">
+<h3 class="anchored" data-anchor-id="program-learning-outcomes-addressed-by-the-course">Program Learning Outcomes addressed by the course:</h3>
+<ol type="1">
+<li>Implement machine learning techniques to measure and/or solve the phenomenon.</li>
+<li>Articulate findings clearly, concisely, and succinctly.</li>
+<li>Learn how to contribute to an open source project on Github.</li>
+<li>Evaluate the performance of predictive models.</li>
+<li>Understand the different predictive model families and how they can be applied to different datasets.</li>
+</ol>
+</section>
+<section id="how-this-course-is-unique-from-other-courses" class="level3">
+<h3 class="anchored" data-anchor-id="how-this-course-is-unique-from-other-courses">How this Course is Unique from Other Courses</h3>
+<p>In most MSDS courses, you would learn and gain the statistical and machine learning content knowledge and skills needed to wrangle the required datasets and exercises given to you by your instructors. For this independent study course, you are given the opportunity to apply these knowledge and skills by working on aspects of an open source project. While each student will be working on their own area of the project, weekly Meetups and our Slack will serve as a platform for us to learn and problem-solve collaboratively.</p>
+<ul>
+<li><p>This is a Pass/Fail course. In most courses, you are given grades for completing assignments, and these grades would represent your mastery of the content. In this course, formative feedback will be provided throughout the course, by the instructor and your peers, as you contribute to the project.</p></li>
+<li><p>You are expected to attend every Meetup and be active on Slack. Slack and Weekly Meetups are the two places where you will share the progress you have made on your project, ask questions that you have to problem-solve together. In order for everyone to contribute meaningfully to these conversations, it is important that you attend, listen, and understand the project and project activities of each of your colleagues. These are the platforms where you will experience collaborative learning.</p></li>
+</ul>
+</section>
+<section id="accessibility-and-accommodations" class="level3">
+<h3 class="anchored" data-anchor-id="accessibility-and-accommodations">Accessibility and Accommodations</h3>
+<p>The CUNY School of Professional Studies is firmly committed to making higher education accessible to students with disabilities by removing architectural barriers and providing programs and support services necessary for them to benefit from the instruction and resources of the University. Early planning is essential for many of the resources and accommodations provided. Please see: http://sps.cuny.edu/student_services/disabilityservices.html</p>
+</section>
+<section id="online-etiquette-and-anti-harassment-policy" class="level3">
+<h3 class="anchored" data-anchor-id="online-etiquette-and-anti-harassment-policy">Online Etiquette and Anti-Harassment Policy</h3>
+<p>The University strictly prohibits the use of University online resources or facilities, including Blackboard, for the purpose of harassment of any individual or for the posting of any material that is scandalous, libelous, offensive or otherwise against the University’s policies. Please see: http://media.sps.cuny.edu/filestore/8/4/9_d018dae29d76f89/849_3c7d075b32c268e.pdf</p>
+</section>
+<section id="academic-integrity" class="level3">
+<h3 class="anchored" data-anchor-id="academic-integrity">Academic Integrity</h3>
+<p>Academic dishonesty is unacceptable and will not be tolerated. Cheating, forgery, plagiarism and collusion in dishonest acts undermine the educational mission of the City University of New York and the students’ personal and intellectual growth. Please see: http://media.sps.cuny.edu/filestore/8/3/9_dea303d5822ab91/839_1753cee9c9d90e9.pdf</p>
+</section>
+<section id="student-support-services" class="level3">
+<h3 class="anchored" data-anchor-id="student-support-services">Student Support Services</h3>
+<p>If you need any additional help, please visit Student Support Services: http://sps.cuny.edu/student_resources</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
