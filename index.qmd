@@ -5,7 +5,7 @@ editor: source
 
 Advisors: [Angela M. Lui](mailto:angela.lui@cuny.edu), Ph.D. and [Jason Bryer](mailto:jason.bryer@cuny.edu), Ph.D.  
 Class Meetup: TBD  
-Slack: TBD  
+Slack: https://data661fall2022.slack.com  
 Office Hours: By Appointment  
 
 
