@@ -18,9 +18,11 @@ jobs:
       - name: Install Quarto CLI
         uses: quarto-dev/quarto-actions/install-quarto@v1
 
-      - uses: actions/setup-java@v1
-        with:
-          java-version: 8
+      - name: Install system dependencies for Java
+        run: |
+          sudo apt-get update
+          sudo apt-get install -yq libcurl4-openssl-dev default-jre default-jdk
+          sudo R CMD javareconf
 
       - name: Install libcurl
         run: |
