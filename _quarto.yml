@@ -16,7 +16,7 @@ website:
       - icon: github
         menu:
           - text: Course Repo
-            href: https://github.com/jbryer/DATA661Fall2022
+            href: https://github.com/jbryer/DATA661-2022-Fall
           - text: mldash Repo
             href: https://github.com/jbryer/mldash
 format:
