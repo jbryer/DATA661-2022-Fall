@@ -22,6 +22,23 @@ This is a list of books that will be helpful to reference throughout the semeste
 
 [Mastering Shiny](https://mastering-shiny.org) by Hadley Wickham
 
+### Install rJava
+
+Note that I believe we need to install Java version 1.8.x. I have included some articles to install rJava for various platforms.
+
+* [Mac OS](https://zhiyzuo.github.io/installation-rJava/)
+* [Ubuntu](https://datawookie.netlify.com/blog/2018/02/installing-rjava-on-ubuntu/)
+* [Windows](https://cimentadaj.github.io/blog/2018-05-25-installing-rjava-on-windows-10/installing-rjava-on-windows-10/)
+
+### Datasets
+
+We want to focus on these repositories of datasets, but if you find other interesting datasets elsewhere (e.g. Kaggle) feel free to add them.
+
+* [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php). See also the [`ucimlr` R package](https://github.com/tyluRp/ucimlr) as they have already done some of the data cleaning and processing.
+
+* [OpenML](https://www.openml.org) is platform for sharing machine learning datasets and algorithms. Our goals are slightly different than theirs, but we should explore what they have to offer. Here are materials from a tutoral given at useR! 2017: https://github.com/openml/articles/tree/master/slides/useR2017_tutorial
+
+
 
 ### References
 

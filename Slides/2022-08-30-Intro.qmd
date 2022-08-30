@@ -1,0 +1,187 @@
+---
+title: "Intro to DATA662 and mldash Package"
+author: "Angela Lui, Ph.D. and Jason Bryer, Ph.D."
+format: 
+  revealjs:
+    theme: [simple]
+    preview-links: auto
+    chalkboard: 
+      boardmarker-width: 5
+execute:
+  echo: true
+editor: source
+---
+
+## Welcome to DATA 661!
+
+-   Instructors: [Angela Lui, Ph.D.](mailto:angela.lui@cuny.edu) and [Jason Bryer, Ph.D.](mailto:jason.bryer@cuny.edu).
+
+-   Course website (including syllabus and schedule): https://jbryer.github.io/DATA661-2022-Fall/
+
+-   `mldash` Package Website: https://github.com/jbryer/mldash
+
+## Getting Started (prerequisites)
+
+Install `reticulate`, `tensorflow`, `keras`, and `torch` from Github. Be warned this will take a while!
+
+```{r}
+#| eval: false
+remotes::install_github(sprintf("rstudio/%s", c("reticulate", "tensorflow", "keras", "torch")))
+reticulate::miniconda_uninstall()
+reticulate::install_miniconda()
+reticulate::conda_create("mldash")
+reticulate::conda_install("mldash",
+	c("jupyterlab", "pandas", "statsmodels","scipy", "scikit-learn",
+	  "matplotlib", "seaborn", "numpy", "pytorch", "tensorflow"))
+install.packages("BiocManager")
+BiocManager::install("mixOmics")
+```
+
+## Installing `mldash`
+
+```{r}
+#| eval: false
+remotes::install_github('jbryer/mldash')
+```
+
+Some Python configuration...
+
+```{r}
+#| warning: false
+Sys.setenv("RETICULATE_PYTHON" = "~/miniforge3/envs/mldash/bin/python")
+reticulate::use_condaenv("mldash")
+tensorflow::use_condaenv("mldash")
+keras::use_condaenv("mldash")
+```
+
+Now we can use it 🤞.
+
+```{r}
+library(mldash)
+```
+
+## Datasets
+
+```{r}
+datasets <- mldash::read_ml_datasets()
+datasets
+```
+
+## Models
+
+This will get all the models currently in the package. This may take a while the first time as it will try to install any dependencies defined.
+
+```{r}
+#| eval: false
+models <- mldash::read_ml_models()
+```
+
+## Defining a Dataset
+
+```{r}
+#| eval: false
+adult_data <- mldash::new_dataset(
+	name = 'adult',
+	type = 'classification',
+	description = 'Prediction task is to determine whether a person makes over 50K a year.',
+	source = 'https://archive.ics.uci.edu/ml/datasets/Adult',
+	url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data',
+	dir = 'inst/datasets',
+	data = function() {
+		destfile <- tempfile()
+		download.file("https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data", destfile)
+		df <- read.csv(destfile, header = FALSE)
+		names(df) <- c('age', 'workclass', 'fnlwgt', 'education', 'education_num', 'marital_status',
+					   'occupation', 'relationship', 'race', 'sex', 'capital_gain', 'captial_loss',
+					   'hours_per_week', 'native_country', 'greater_than_50k')
+		df$greater_than_50k <- df$greater_than_50k == ' >50K'
+		return(df)
+	},
+	model = greater_than_50k ~ .,
+	overwrite = TRUE
+)
+```
+
+## Defining a Dataset (result)
+
+```
+name: adult
+type: classification
+description: Prediction task is to determine whether a person makes over 50K a year.
+source: https://archive.ics.uci.edu/ml/datasets/Adult
+reference: APA reference for the dataset.
+url: https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data
+data: function () 
+    {
+        destfile <- tempfile()
+        download.file("https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data", 
+            destfile)
+        df <- read.csv(destfile, header = FALSE)
+        names(df) <- c("age", "workclass", "fnlwgt", "education", 
+            "education-num", "marital-status", "occupation", "relationship", 
+            "race", "sex", "capital-gain", "captial-loss", "hours-per-week", 
+            "native-country", "greater_than_50k")
+        df$greater_than_50k <- df$greater_than_50k == " >50K"
+        return(df)
+    }
+model: greater_than_50k ~ .
+note:
+```
+
+## Defining a Model
+
+```{r}
+#| eval: false
+rf_model <- mldash::new_model(
+	name = 'randomForest_classification',
+	type = 'classification',
+	description = 'Random forest prediction model usign the randomForest R package.',
+	train_fun = function(formula, data) {
+		randomForest::randomForest(formula = formula, data = data, ntree = 1000)
+	},
+	predict_fun = function(model, newdata) {
+	    randomForest:::predict.randomForest(model, newdata = newdata, type = "prob")[,2,drop=TRUE]
+	},
+	packages = "randomForest",
+	overwrite = TRUE
+)
+```
+
+## Defining a Model (result)
+
+```
+name: randomForest_classification
+type: classification
+description: Random forest prediction model usign the randomForest R package.
+train: function (formula, data)
+    {
+        randomForest::randomForest(formula = formula, data = data,
+            ntree = 1000)
+    }
+predict: function (model, newdata)
+    {
+        randomForest:::predict.randomForest(model, newdata = newdata, type = "prob")[,2,drop=TRUE]
+    }
+packages: randomForest
+note:
+```
+
+## Running Models
+
+```{r}
+#| eval: false
+ml_results <- mldash::run_models(datasets = datasets, 
+								 models = models,
+								 print_errors = FALSE, 
+								 seed = 1234)
+```
+
+## Next Steps
+
+Before next week try to:
+
+1.  Install the `mldash` R package.
+
+2.  Run the models and datasets already there.
+
+3.  Find a dataset from the UCI Machine Learning Repository: https://archive.ics.uci.edu/ml/index.php When you find one you want to work on add it to this [Google Sheet](https://docs.google.com/spreadsheets/d/1z7z5AiDIB9ImBduoLR0-Ycvvtv-nRfAtPbNXAoogIz4/edit?usp=sharing). We will use this to ensure we don't step on someone's toes:
