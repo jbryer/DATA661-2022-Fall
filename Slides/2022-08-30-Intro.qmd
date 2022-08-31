@@ -48,6 +48,7 @@ Some Python configuration...
 
 ```{r}
 #| warning: false
+#| eval: false
 Sys.setenv("RETICULATE_PYTHON" = "~/miniforge3/envs/mldash/bin/python")
 reticulate::use_condaenv("mldash")
 tensorflow::use_condaenv("mldash")
@@ -57,12 +58,14 @@ keras::use_condaenv("mldash")
 Now we can use it 🤞.
 
 ```{r}
+#| eval: false
 library(mldash)
 ```
 
 ## Datasets
 
 ```{r}
+#| eval: false
 datasets <- mldash::read_ml_datasets()
 datasets
 ```
